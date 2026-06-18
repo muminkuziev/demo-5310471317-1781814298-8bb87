@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gospodarstwo Rolne Jan Lipczyński – Państwo od malin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Gospodarstwo Rolne Jan Lipczyński – malina deserowa, malina na przetwory, praca sezonowa przy zbiorze malin w Wyszynkach." />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-soft: #0b1020;
+      --card: #101626;
+      --accent: #ff2f7b;
+      --accent-soft: #ff8ab3;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.35);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent), var(--accent-soft));
+      box-shadow: 0 0 18px rgba(255, 47, 123, 0.9);
+    }
+
+    .brand-text {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .top-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      justify-content: flex-end;
+    }
+
+    .top-contact span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: 0.16s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero {
+      margin-top: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 40px 120px rgba(15, 23, 42, 0.9), 0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 47, 123, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(56, 189, 248, 0.18), transparent 55%);
+      opacity: 0.9;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-left, .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent), var(--accent-soft));
+      box-shadow: 0 0 12px rgba(255, 47, 123, 0.9);
+    }
+
+    .hero-title {
+      margin-top: 18px;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, var(--accent), var(--accent-soft));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-cta {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #020617;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 18px 40px rgba(255, 47, 123, 0.35), 0 0 0 1px rgba(15, 23, 42, 0.8);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 22px 55px rgba(255, 47, 123, 0.45), 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-secondary {
+      border-radius: var(--radius-sm);
+      padding: 9px 16px;
+      font-size: 13px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.16s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-right-card {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 18px 18px 16px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9), 0 0 0 1px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(22, 163, 74, 0.12);
+      color: #4ade80;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #4ade80, #16a34a);
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.9);
+    }
+
+    .hero-right-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 32px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 24px 24px 26px;
+      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9), 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .section-header { margin-bottom: 16px; }
+
+    .section-title {
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+    }
+
+    .section-subtitle {
+      margin-top: 4px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .section-body {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .card-soft, .news-card, .contact-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 16px 16px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-soft strong, .contact-card strong {
+      color: var(--text);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .news-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-soft);
+      margin-bottom: 6px;
+    }
+
+    .news-title {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .news-link {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--accent-soft);
+    }
+
+    .employees-highlight {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 12px;
+    }
+
+    .contact-card p { margin-bottom: 6px; }
+
+    .footer {
+      margin-top: 26px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      padding-top: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .footer-links a:hover { color: var(--accent-soft); }
+
+    @media (max-width: 900px) {
+      .hero, .two-column, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 18px 14px 32px; }
+      .hero { padding: 22px; border-radius: 22px; }
+      .section { padding: 20px 18px 22px; border-radius: 22px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .top-contact { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <strong>Gospodarstwo Rolne Jan Lipczyński</strong>
+          Państwo od malin
+        </div>
+      </div>
+      <div>
+        <div class="top-contact">
+          <span>📞 <strong>+48 603 75 08 40</strong></span>
+          <span>✉️ <strong>jan.lipczynski@grlipczynski.pl</strong></span>
+        </div>
+        <nav>
+          <a href="#oferta">Oferta</a>
+          <a href="#praca">Praca</a>
+          <a href="#aktualnosci">Aktualności</a>
+          <a href="#pracownicy">Pracownicy</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Rodzinne gospodarstwo malinowe
+        </div>
+        <h1 class="hero-title">
+          <span>Maliny – słodki smak natury!</span><br />
+          Prosto z Wyszynków, z szacunkiem dla ludzi i przyrody.
+        </h1>
+        <p class="hero-subtitle">
+          Witaj w moim gospodarstwie, które skoncentrowane jest na uprawie maliny deserowej w tunelach.
+          Plantacja znajduje się w przepięknej wioseczce Wyszynki niedaleko Chodzieży w województwie wielkopolskim.
+        </p>
+        <div class="hero-cta">
+          <button class="btn-primary">Poznaj naszą ofertę →</button>
+          <button class="btn-secondary">Dołącz do zespołu</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-right-card">
+          <div class="hero-right-header">
+            <span>Sezon malin</span>
+            <span class="status-pill">
+              <span class="status-dot"></span>
+              Od połowy maja do końca października
+            </span>
+          </div>
+          <p class="hero-right-text">
+            Produkujemy malinę deserową, odmian klubowych. Cechuje ją bardzo dobry słodki smak
+            oraz dobre parametry handlowe (shelf-life, twardość, łatwość zbioru). Dostępność
+            w zależności od sezonu szacujemy średnio od połowy maja do końca października,
+            z różnymi nasileniami.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="oferta" class="section">
+      <div class="section-header">
+        <div class="section-title">Oferta</div>
+        <div class="section-subtitle">Wybory przyjazne dla środowiska – malina deserowa i malina na przetwory.</div>
+      </div>
+      <div class="two-column">
+        <div class="section-body">
+          <h3 style="margin-bottom:8px;">Malina deserowa</h3>
+          Produkujemy malinę deserową, odmian klubowych. Cechuje ją, zarówno bardzo dobry słodki smak,
+          jak i dobre parametry handlowe (shelf-life, twardość, łatwość zbioru). Dostępność w zależności
+          od sezonu, możemy szacować średnio na od połowy maja do końca października, z różnymi nasileniami.
+          <br /><br />
+          Nasi klienci indywidualni bardzo cenią sobie malinę na przetwory, tzw. drugi gatunek. Jest to owoc,
+          który ma te same walory smakowe i jakościowe, ale jednocześnie nadaje się idealnie do produkcji
+          nalewek lub soków, dżemów, konfitur.
+        </div>
+        <div class="card-soft">
+          <strong>Malina na przetwory</strong><br />
+          Nasi klienci indywidualni bardzo cenią sobie malinę na przetwory, tzw drugi gatunek. jest to owoc,
+          który ma te same walory smakowe i jakościowe, ale jednocześnie nadaje się idealnie do produkcji
+          nalewek lub soków, dżemów, konfitur.
+        </div>
+      </div>
+    </section>
+
+    <section id="praca" class="section">
+      <div class="section-header">
+        <div class="section-title">Praca</div>
+        <div class="section-subtitle">Dołącz do naszego zespołu – sezonowa praca przy zbiorze malin.</div>
+      </div>
+      <div class="two-column">
+        <div class="section-body">
+          <h3 style="margin-bottom:8px;">Poszukujemy pracowników do zbioru malin</h3>
+          Poszukujemy chętnych i sumiennych osób do pracy sezonowej przy zbiorze malin na naszej plantacji.
+          Praca odbywa się na świeżym powietrzu, w spokojnej i przyjaznej atmosferze, wśród natury, bez
+          pośredników, co gwarantuje uczciwe warunki współpracy oraz bezpośredni kontakt z pracodawcą.
+          <br /><br />
+          <strong>Oferujemy:</strong><br />
+          atrakcyjne wynagrodzenie (akordowe lub godzinowe – do ustalenia), terminowe wypłaty, możliwość pracy
+          na cały sezon lub krócej, elastyczne godziny pracy, pomoc w organizacji zakwaterowania (jeśli dotyczy).
+          <br /><br />
+          <strong>Wymagania:</strong><br />
+          chęć do pracy i zaangażowanie, dokładność przy zbiorach, doświadczenie mile widziane, ale niekonieczne.
+          <br /><br />
+          Zainteresowane osoby prosimy o kontakt telefoniczny lub SMS. Liczba miejsc ograniczona – zapraszamy
+          do zgłoszeń!
+        </div>
+        <div class="card-soft">
+          <strong>Ręczny zbiór i atmosfera pracy</strong><br />
+          Delikatność maliny deserowej nie pozwala na zbiór mechaniczny i w związku z tym odbywa się on zawsze ręcznie.
+          Rokrocznie w sezonie od początku czerwca do końca października serdecznie zapraszamy do pracy przy zbiorach.
+          <br /><br />
+          Dla pracowników przyjezdnych, czy z Ukrainy, czy z innych krajów gwarantujemy nocleg oraz pomieszczenia
+          sanitarne i użytkowe na terenie plantacji. Każdy pracownik jest zatrudniony legalnie i jest ubezpieczony.
+        </div>
+      </div>
+    </section>
+
+    <section id="aktualnosci" class="section">
+      <div class="section-header">
+        <div class="section-title">Aktualności</div>
+        <div class="section-subtitle">Malinowe wydarzenia – uprawy ekologiczne, nowe odmiany, handel letnimi owocami.</div>
+      </div>
+      <div class="news-grid">
+        <article class="news-card">
+          <div class="news-tag">Uprawy ekologiczne</div>
+          <div class="news-title">Uprawy ekologiczne</div>
+          <div>
+            Ekologiczna uprawa malin staje się coraz bardziej popularna, zarówno w Polsce, jak i na całym świecie.
+            Oto kilka kluczowych aspektów ekologicznej...
+          </div>
+          <div class="news-link">czytaj dalej</div>
+        </article>
+        <article class="news-card">
+          <div class="news-tag">Nowe odmiany</div>
+          <div class="news-title">Nowe odmiany</div>
+          <div>
+            W ostatnich miesiącach na plantacjach malin w Polsce zauważono wzrost zainteresowania nowymi odmianami malin,
+            które są bardziej odporne na choroby i...
+          </div>
+          <div class="news-link">czytaj dalej</div>
+        </article>
+        <article class="news-card">
+          <div class="news-tag">Handel</div>
+          <div class="news-title">Fazy handlu letnimi owocami</div>
+          <div>
+            Ostatnio na plantacjach malin w Polsce zauważono przejście z fazy handlu letnimi owocami do fazy handlu
+            odmianami powtarzającymi, czyli tzw....
+          </div>
+          <div class="news-link">czytaj dalej</div>
+        </article>
+      </div>
+      <div class="section-body" style="margin-top:14px;">
+        « Starsze wpisy
+      </div>
+    </section>
+
+    <section id="pracownicy" class="section">
+      <div class="section-header">
+        <div class="section-title">Pracownicy</div>
+        <div class="section-subtitle">Ludzie są sercem naszego gospodarstwa – atmosfera, integracja, powroty co roku.</div>
+      </div>
+      <div class="section-body employees-highlight">
+        Możemy się poszczycić tym, że dużo pracowników wraca do nas rokrocznie i poleca nas swoim rodzinom, czy bliskim.
+        Nie ma większej satysfakcji, niż oglądanie tych samych osób co roku, z wieloma się zżyliśmy. Wierzę, że udało nam
+        się wytworzyć atmosferę przyjazną, spokojną i komfortową tak, aby każdy się czuł tu dobrze i sprawiedliwie
+        potraktowany oraz z godnością.
+        <br /><br />
+        Po pracy niejednokrotnie lubimy usiąść i po prostu porozmawiać, ale też i czasami organizujemy większe spotkania,
+        gdzie bawimy się do białego rana. Niestety następnego dnia logistyka funkcjonuje na minimalnie niższych obrotach,
+        ale każdy jest wyrozumiały, bo wie, że taka integracja jest nam wszystkim potrzebna.
+        <br /><br />
+        Zapraszamy do kontaktu, nr telefonu: <strong>+48 603 75 08 40</strong>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section">
+      <div class="section-header">
+        <div class="section-title">Kontakt</div>
+        <div class="section-subtitle">Masz pytania? Skontaktuj się z nami – chętnie opowiemy o naszych malinach.</div>
+      </div>
+      <div class="contact-grid">
+        <div class="section-body">
+          Jeżeli masz pytania dotyczące naszych produktów, metod uprawy lub chcesz odwiedzić nasze gospodarstwo,
+          skontaktuj się z nami:
+          <br /><br />
+          Jakiś tekst dotyczący fanpage Państwo od malin. Zobacz nasz fanpage – <strong>Państwo od malin</strong> – na FB.
+        </div>
+        <div class="contact-card">
+          <p><strong>Gospodarstwo Rolne Jan Lipczyński</strong></p>
+          <p>Wyszynki 7, 64-834 Wyszynki</p>
+          <p>NIP 777-248-81-46</p>
+          <p>Tel. <strong>+48 603 75 08 40</strong></p>
+          <p>E-mail: <strong>jan.lipczynski@grlipczynski.pl</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Copyright Jan Lipczyński 2024. Zdjęcia użyte z Freepik.com</div>
+      <div class="footer-links">
+        <a href="#">Polityka plików cookie</a>
+        <a href="#">Polityka prywatności</a>
+        <a href="#">Polityka plików cookie</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
